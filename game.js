@@ -29,7 +29,7 @@ $(".btn").click(function() {
 
 });
 
-$(document).keypress(function() {
+$(document).click(function() {
     if(!started) {
         $("h1").text("Level " + level);
         nextSequence();
@@ -40,17 +40,22 @@ $(document).keypress(function() {
 /* functions *************************************/
 
 function nextSequence() {
-    userClickedPattern = [];
-    level++;
-    $("#level-title").text("Level " + level);
 
-    var randomNumber = Math.floor(Math.random() * 4);
-    var randomChosenColor = buttonColors[randomNumber];
-    gamePattern.push(randomChosenColor);
+    setTimeout(function(){
+        userClickedPattern = [];
+        level++;
+        $("#level-title").text("Level " + level);
+    
+        var randomNumber = Math.floor(Math.random() * 4);
+        var randomChosenColor = buttonColors[randomNumber];
+        gamePattern.push(randomChosenColor);
+    
+        $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
+    
+        playSound(randomChosenColor);
+    } ,1000);
 
-    $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
-
-    playSound(randomChosenColor);
+    
 
 /* teste de funcionalidade dos arrays **********/    
     var arryGame = gamePattern;
